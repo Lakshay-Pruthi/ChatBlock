@@ -10,6 +10,7 @@ function App() {
   const [web3, setWeb3] = useState(null);
   const [userAccount, setUserAccount] = useState(null);
 
+
   if (provider) {
     useEffect(() => {
       function loadWeb3() {
@@ -17,9 +18,21 @@ function App() {
         ethereum.request({ method: 'eth_requestAccounts' });
       }
 
-      provider && loadWeb3();
+      async function loadUserAccount() {
+        const accounts = await web3.eth.getAccounts();
+        setUserAccount(accounts[0]);
+      }
+
+      provider && loadWeb3() && loadUserAccount();
     }, [provider]);
   }
+
+  ethereum.on("accountsChanged", () => {
+    setUserAccount();
+  });
+
+  ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
 
   return (
     <>
