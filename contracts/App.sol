@@ -3,15 +3,12 @@
 pragma solidity ^0.8.0;
 
 contract Room{
+    string name;
+    address[] members;
 
-    struct User{
-        string name;
-        address member;
+    constructor(string memory _name){
+        name = _name;
     }
-
-    User[] members;
-
-    mapping(address => string) profile;
 
     struct Message{
         address sender;
@@ -21,9 +18,8 @@ contract Room{
     Message[] messages;
 
 
-    function addMember(string memory _name,address _newMember) external{
-        User memory user = User(_name,_newMember);
-        members.push(user);
+    function addMember(address _newMember) external{
+        members.push(_newMember);
     }
 
     function sendMessage(address _sender, string memory _message) external{
@@ -34,19 +30,13 @@ contract Room{
 }
 
 contract App{
-
-    struct ROOM{
-        string name;
-        address roomAddress;
-    }
-
-    mapping(address=>ROOM[])public userRooms;
+    mapping (address=>string) public user;
+    mapping(address=>address[])public userRooms;
 
 
-    function addRoom(address _user,string memory _name) external{
-        Room room = new Room();
-        ROOM memory newRoom = ROOM(_name,address(room));
-        userRooms[_user].push(newRoom);
+    function createRoom(address _user,string memory _name) external{
+        Room room = new Room(_name);
+        userRooms[_user].push(address(room));
     }
 
     function getNumberOfRooms(address _user) public view returns(uint){
