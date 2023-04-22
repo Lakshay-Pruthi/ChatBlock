@@ -1,13 +1,12 @@
 
-function Popup() {
+function Form() {
     return (
         <>
             <form action="">
-
                 <input type="text" placeholder="Enter the name" />
             </form>
         </>
     )
 }
 
-export default Popup;
+export default Form;

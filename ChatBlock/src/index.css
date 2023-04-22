@@ -1,6 +1,7 @@
 /* Pages */
 @import url('./CSS/Pages/Home.css');
 @import url('./CSS/Pages/Rooms.css');
+@import url('./CSS/Pages/About.css');
 
 /* Components  */
 @import url('./CSS/Components/Navbar.css');

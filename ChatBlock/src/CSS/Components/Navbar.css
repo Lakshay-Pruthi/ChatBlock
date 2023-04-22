@@ -2,8 +2,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--blue);
-    background-color: #3145ff;
+    background-color: var(--secondaryBlue);
     padding: 0px 10px;
     font-size: large;
     color: white;
@@ -28,6 +27,7 @@ nav ul a {
     transition: 0.2s ease;
 }
 
+.active,
 nav ul a:hover {
     background-color: white;
     color: var(--blue);

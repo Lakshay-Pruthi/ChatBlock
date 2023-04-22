@@ -4,12 +4,20 @@
 
 .rooms {
     width: 30%;
-    background-color: #3145ff;
     color: white;
     height: 80vh;
+    overflow-y: scroll;
+}
+
+#chatHeading {
+    position: sticky;
+    top: 0px;
+    background-color: var(--secondaryBlue);
 }
 
 .rooms ul li {
+    background-color: var(--blue);
+
     padding: 10px;
     border: 1px solid white;
     border-top-right-radius: 10px;
@@ -18,16 +26,17 @@
 }
 
 .rooms ul li:hover {
-    background-color: var(--blue);
+    background-color: var(--secondaryBlue);
 }
 
-.chat {
+#chat {
     width: 70%;
     height: 80vh;
     background-color: var(--blue);
     border-left: 10px solid white;
     display: flex;
     justify-content: center;
+
 }
 
 .roomname {
@@ -37,4 +46,15 @@
 .roomAddress {
     font-size: medium;
     color: antiquewhite;
+}
+
+
+
+#chatBox {
+    width: 70%;
+    height: 80vh;
+    background-color: var(--blue);
+    border-left: 10px solid white;
+    display: none;
+    justify-content: center;
 }

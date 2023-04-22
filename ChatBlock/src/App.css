@@ -2,5 +2,17 @@
 
 :root {
     --blue: #305df6;
+    --secondaryBlue: #3145fe;
     --primaryFont: 'Alkatra', cursive;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 5px solid white;
+    border-radius: 25px;
+    background-color: var(--secondaryBlue);
 }
