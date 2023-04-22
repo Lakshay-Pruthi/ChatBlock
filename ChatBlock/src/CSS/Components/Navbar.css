@@ -3,6 +3,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     background-color: var(--blue);
+    background-color: #3145ff;
     padding: 0px 10px;
     font-size: large;
     color: white;
