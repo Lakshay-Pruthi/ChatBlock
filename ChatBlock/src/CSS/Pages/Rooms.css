@@ -1,0 +1,29 @@
+.Rooms-outer {
+    display: flex;
+}
+
+.rooms {
+    width: 30%;
+    background-color: #3145ff;
+    color: white;
+    height: 80vh;
+}
+
+.rooms ul li {
+    padding: 10px;
+    border: 1px solid white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.2s ease;
+}
+
+.rooms ul li:hover {
+    background-color: var(--blue);
+}
+
+.chat {
+    width: 70%;
+    height: 80vh;
+    background-color: var(--blue);
+    border-left: 10px solid white;
+}

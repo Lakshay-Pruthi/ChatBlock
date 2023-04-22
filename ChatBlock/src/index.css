@@ -1,5 +1,6 @@
 /* Pages */
 @import url('./CSS/Pages/Home.css');
+@import url('./CSS/Pages/Rooms.css');
 
 /* Components  */
 @import url('./CSS/Components/Navbar.css');
