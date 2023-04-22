@@ -7,12 +7,13 @@
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 12px;
     background-color: white;
+    border-radius: 25px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border: 5px solid white;
+    border: 2px solid white;
     border-radius: 25px;
-    background-color: var(--secondaryBlue);
+    background-color: var(--secondaryBlue)
 }

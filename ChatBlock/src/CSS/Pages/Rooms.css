@@ -36,7 +36,7 @@
     border-left: 10px solid white;
     display: flex;
     justify-content: center;
-
+    background: url('./assets/chatbody.jpg');
 }
 
 .roomname {
@@ -56,5 +56,52 @@
     background-color: var(--blue);
     border-left: 10px solid white;
     display: none;
-    justify-content: center;
+    flex-direction: column;
+}
+
+header {
+    color: white;
+    padding: 10px 25px;
+    font-size: x-large;
+    border-bottom: 2px solid white;
+    background-color: var(--secondaryBlue);
+}
+
+.chatBody {
+    height: 75%;
+    background: url('./assets/chatbody.jpg');
+    background-size: cover;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#chatBox input {
+    border-radius: 10px;
+    width: 65%;
+    margin-left: 10px;
+}
+
+.message {
+    border: 1px solid white;
+    background-color: var(--secondaryBlue);
+    background-color: #df2568;
+    color: white;
+    max-width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 0px;
+}
+
+.message p {
+    font-size: 12px;
+}
+
+#chatBox .primaryBtnDesign {
+    border-radius: 10px;
+    height: 50px;
+    color: white;
+    background-color: var(--secondaryBlue);
+    margin: 0px 2px;
+    width: 15%;
 }

@@ -13,6 +13,11 @@
     font-family: var(--primaryFont);
 }
 
+body {
+    background: url('./assets/chatbody.jpg');
+
+}
+
 a {
     text-decoration: none;
     color: white;

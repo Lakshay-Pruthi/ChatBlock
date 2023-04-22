@@ -38,9 +38,22 @@ function Rooms() {
                 </div>
                 <div id='chatBox'>
                     <header>Room Name</header>
-                    <div>Chat body</div>
+                    <div className='chatBody'>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                        <div className='message'><p>Name</p> Hello this is my message</div>
+                    </div>
                     <div>
-                        <input type="text" />
+                        <input type="text" placeholder='your message here....' />
+                        <button className='primaryBtnDesign'>upload image</button>
                         <button className='primaryBtnDesign'>send</button>
                     </div>
                 </div>
