@@ -26,4 +26,15 @@
     height: 80vh;
     background-color: var(--blue);
     border-left: 10px solid white;
+    display: flex;
+    justify-content: center;
+}
+
+.roomname {
+    font-size: x-large;
+}
+
+.roomAddress {
+    font-size: medium;
+    color: antiquewhite;
 }

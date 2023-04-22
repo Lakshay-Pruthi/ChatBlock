@@ -8,7 +8,8 @@ function Home() {
             <div className="container">
                 <div id="left">
                     <img src={logo} alt="" />
-                    <h1>Welcome!</h1>
+                    <h1>Sandesha</h1>
+                    <h2>Welcome</h2>
                 </div>
                 <Popup />
                 <button className="primaryBtnDesign">Create Room</button>
