@@ -23,7 +23,7 @@ function App() {
         setUserAccount(accounts[0]);
       }
 
-      provider && loadWeb3() && loadUserAccount();
+      provider && loadWeb3() || loadUserAccount();
     }, [provider]);
   }
 
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-
+      {userAccount}
     </>
   )
 }
