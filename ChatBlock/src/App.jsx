@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
 import Web3 from 'web3'
 
 import app from './contracts/App.json'
@@ -7,6 +9,9 @@ import app from './contracts/App.json'
 import room from './contracts/Room.json'
 
 import './App.css'
+import Home from './Pages/Home';
+import Rooms from './Pages/Rooms';
+import About from './Pages/About';
 
 function App() {
 
@@ -70,10 +75,14 @@ function App() {
 
   return (
     <>
-      <button onClick={something}>click me</button>
-      <button onClick={loadRoomContractAddress}>click me</button>
-      <button onClick={loadRoomContract}>contract</button>
-      {userAccount}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/Rooms' element={<Rooms />} />
+          <Route path='/About' element={<About />} />
+        </Routes>
+
+      </BrowserRouter>
 
     </>
   )
