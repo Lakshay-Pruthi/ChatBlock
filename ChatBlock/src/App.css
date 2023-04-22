@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@700&display=swap');
+
+:root {
+    --blue: #465efc;
+    --primaryFont: 'Carlito', sans-serif;
+}
+
+@import url('./CSS/Navbar.css');
+@import url('./CSS/Footer.css');

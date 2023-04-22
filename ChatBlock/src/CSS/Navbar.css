@@ -1,0 +1,11 @@
+nav {
+    padding: 20px;
+    background-color: var(--blue);
+}
+
+nav ul {
+    list-style: none;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
