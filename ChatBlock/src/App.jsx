@@ -43,11 +43,15 @@ function App() {
       setUserAccount(accounts[0]);
     }
 
+    web3 && loadUserAccount();
+  }, [web3, userAccount])
+
+  useEffect(() => {
     async function loadAppContract() {
       const cont = new web3.eth.Contract(app.abi, '0x580bb68181B38768FF0EE793E8Bc0542C7691A36');
       setContract(cont);
     }
-    web3 && loadUserAccount() && loadAppContract();
+    loadAppContract();
   }, [web3])
 
   async function something() {
@@ -78,7 +82,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Main />} >
+          <Route path='/' element={<Main userAccount={userAccount} />} >
             <Route index element={<Home />} />
             <Route path='/Rooms' element={<Rooms />} />
             <Route path='/About' element={<About />} />

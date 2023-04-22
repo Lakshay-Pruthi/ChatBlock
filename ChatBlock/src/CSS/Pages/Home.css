@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: var(--blue);
+}
+
+.container button {
+    font-size: x-large;
+    border: 1px solid white;
+    padding: 5px 25px;
+    background-color: var(--blue);
+    color: white;
+    transition: 0.2s ease;
+}
+
+.container button:hover {
+    background-color: white;
+    color: var(--blue);
+}

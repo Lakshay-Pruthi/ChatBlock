@@ -1,7 +1,9 @@
 function Home() {
     return (
         <>
-            Home
+            <div className="container">
+                <button className="primaryBtnDesign">Create Room</button>
+            </div>
         </>
     )
 }
