@@ -7,12 +7,14 @@
     color: white;
     height: 80vh;
     overflow-y: scroll;
+    backdrop-filter: blur(10px);
 }
 
 #chatHeading {
     position: sticky;
     top: 0px;
     background-color: var(--secondaryBlue);
+    padding: 14px 10px;
 }
 
 .rooms ul li {
@@ -27,6 +29,7 @@
 
 .rooms ul li:hover {
     background-color: var(--secondaryBlue);
+    cursor: pointer;
 }
 
 #chat {
@@ -54,7 +57,6 @@
     width: 70%;
     height: 80vh;
     background-color: var(--blue);
-    border-left: 10px solid white;
     display: none;
     flex-direction: column;
 }

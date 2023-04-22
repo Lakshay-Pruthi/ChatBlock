@@ -1,14 +1,42 @@
+import { useEffect, useState } from 'react';
 import logo from '../assets/Logo2.jpg'
+import room from '../contracts/Room.json'
 
-function Rooms() {
-    function something() {
+function Rooms(props) {
+
+    const { web3, contract, userAccount } = props;
+
+
+    const [rooms, setRooms] = useState(null);
+
+    useEffect(() => {
+        async function loadRooms() {
+            const length = await contract.methods.getNumberOfRooms(userAccount).call();
+            const roooms = [];
+            for (let i = 0; i < length; i++) {
+                const address = await contract.methods.userRooms(userAccount, i).call();
+                const name = await loadContractName(address);
+                roooms.push(<li onClick={displayChat}><p className='roomname'>{name}</p><p className='roomAddress'>{address}</p></li>)
+            }
+            setRooms(roooms);
+        }
+        userAccount && loadRooms();
+    }, [userAccount, contract])
+
+    async function loadContractName(address) {
+        const cont = new web3.eth.Contract(room.abi, address);
+        const name = await cont.methods.name().call();
+        console.log(name);
+        return name;
+    }
+
+    function displayChat() {
         const box = document.getElementById('chat')
         console.log(box);
         box.style.display = 'none';
         const box2 = document.getElementById('chatBox')
         console.log(box2);
         box2.style.display = 'flex'
-
     }
     return (
         <>
@@ -16,15 +44,8 @@ function Rooms() {
                 <div className="rooms">
                     <ul>
                         <li id='chatHeading'><h3>Chats</h3></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        <li onClick={something}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-
+                        <li onClick={displayChat}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
+                        {rooms}
 
                     </ul>
                 </div>
@@ -39,16 +60,6 @@ function Rooms() {
                 <div id='chatBox'>
                     <header>Room Name</header>
                     <div className='chatBody'>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
                         <div className='message'><p>Name</p> Hello this is my message</div>
                     </div>
                     <div>

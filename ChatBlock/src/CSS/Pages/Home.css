@@ -14,11 +14,17 @@
     background-color: var(--blue);
     color: white;
     transition: 0.2s ease;
+    margin-top: 10px;
 }
 
 .container button:hover {
     background-color: white;
     color: var(--blue);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 #left {

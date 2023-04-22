@@ -51,7 +51,7 @@ function App() {
       const cont = new web3.eth.Contract(app.abi, '0x580bb68181B38768FF0EE793E8Bc0542C7691A36');
       setContract(cont);
     }
-    loadAppContract();
+    web3 && loadAppContract();
   }, [web3])
 
   async function something() {
@@ -83,8 +83,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main userAccount={userAccount} />} >
-            <Route index element={<Home />} />
-            <Route path='/Rooms' element={<Rooms />} />
+            <Route index element={<Home web3={web3} contract={contract} userAccount={userAccount} />} />
+            <Route path='/Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
             <Route path='/About' element={<About />} />
           </Route>
         </Routes>
