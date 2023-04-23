@@ -3,7 +3,9 @@ function About() {
         <>
             <div className="about-container">
                 <h1>About</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quos quisquam corrupti rerum maxime fuga voluptatibus ducimus. Dolore ab, maiores harum odio officia eos. Veritatis voluptatum tenetur, molestiae totam harum id sint. Voluptatum eum sapiente rerum veritatis fugiat? Rem totam dicta quam eaque fugiat esse quisquam voluptates quo culpa nemo?</p>
+                <p>Sandesha is a revolutionary project that aims to provide a secure, decentralized, and blockchain-based text messaging app. The project is designed to enable individuals to communicate with each other privately and securely, without the need for any central authority or intermediary.
+
+                    The Sandesha app uses blockchain technology to create a peer-to-peer network that allows users to send messages directly to each other, without the need for any third-party intervention. The app is built on a decentralized platform, which means that all messages are encrypted and stored securely on the blockchain, making them tamper-proof and immutable.</p>
             </div>
         </>
     )

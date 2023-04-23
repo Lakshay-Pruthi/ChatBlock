@@ -10,11 +10,6 @@ function Chatbox(props) {
     const [Members, setMembers] = useState(userAccount)
 
 
-
-
-
-
-
     useEffect(() => {
         async function loadName() {
             const name = await roomContract.methods.name().call();
@@ -54,6 +49,8 @@ function Chatbox(props) {
         roomContract.methods.sendMessage(userAccount, message).send({ from: userAccount });
 
     }
+
+
     return (
         <>
             <header>
@@ -75,8 +72,7 @@ function Chatbox(props) {
                 <Chat roomContract={roomContract} userAccount={userAccount} />
             </div>
             <form onSubmit={SendMessage} id='message-form'>
-                <input type="text" placeholder='your message here....' />
-                <button className='primaryBtnDesign'>upload image</button>
+                <input type="text" id="msgInput" placeholder='your message here....' />
                 <button className='primaryBtnDesign' type='submit'>send</button>
             </form>
         </>
