@@ -54,4 +54,4 @@ Sandesha is released under the MIT License. See the LICENSE file for more detail
 
 ## Contact
 
-If you have any questions or concerns about Sandesha, you can contact us at lakshay47pruthi16@email.com.
+If you have any questions or concerns about Sandesha, you can contact us at lakshay47pruthi16@gmail.com.
