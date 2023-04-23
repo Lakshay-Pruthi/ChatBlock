@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 contract Room{
     string public name;
-    address[] members;
+    address[] public members;
 
     constructor(string memory _name){
         name = _name;
@@ -15,7 +15,15 @@ contract Room{
         string message;
     }
 
-    Message[] messages;
+    Message[] public messages;
+
+    function getNumberOfMessages() public view returns(uint){
+        return messages.length;
+    }
+
+    function getNumberOfMembers() public view returns(uint){
+        return members.length;
+    }
 
 
     function addMember(address _newMember) external{
@@ -41,6 +49,10 @@ contract App{
 
     function getNumberOfRooms(address _user) public view returns(uint){
         return userRooms[_user].length;
+    }
+
+    function addUserRoom(address _user,address _room) public {
+        userRooms[_user].push(_room);
     }
 
 }

@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import logo from '../assets/Logo2.jpg'
 import room from '../contracts/Room.json'
+import Chat from './Chat';
+import Chatbox from './Chatbox';
 
 function Rooms(props) {
 
     const { web3, contract, userAccount } = props;
 
 
-    const [rooms, setRooms] = useState(null);
+    const [rooms, setRooms] = useState([]);
+
+    const [roomContract, setRoomContract] = useState(null)
+
+
 
     useEffect(() => {
         async function loadRooms() {
@@ -16,36 +22,62 @@ function Rooms(props) {
             for (let i = 0; i < length; i++) {
                 const address = await contract.methods.userRooms(userAccount, i).call();
                 const name = await loadContractName(address);
-                roooms.push(<li onClick={displayChat}><p className='roomname'>{name}</p><p className='roomAddress'>{address}</p></li>)
+                roooms.push(<li key={i} onClick={() => displayChat(address)}><p className='roomname'>{name}</p><p className='roomAddress'>{address}</p></li>)
             }
             setRooms(roooms);
         }
         userAccount && loadRooms();
     }, [userAccount, contract])
 
-    async function loadContractName(address) {
+
+    async function loadRoomContract(address) {
         const cont = new web3.eth.Contract(room.abi, address);
+        setRoomContract(cont);
+    }
+
+    async function loadContractName(address) {
+        const cont = await new web3.eth.Contract(room.abi, address);
         const name = await cont.methods.name().call();
-        console.log(name);
         return name;
     }
 
-    function displayChat() {
+    async function loadChat(cont) {
+        const length = await cont.methods.getNumberOfMessages().call();
+        console.log(length);
+        for (let i = 0; i < length; i++) {
+            const message = cont.methods.messages(i).call();
+            console.log(message);
+        }
+    }
+
+    async function displayChat(address) {
+        const cont = await new web3.eth.Contract(room.abi, address);
+        showChat();
+        loadRoomContract(address)
+        loadChat(cont)
+    }
+
+    function showChat() {
         const box = document.getElementById('chat')
-        console.log(box);
         box.style.display = 'none';
         const box2 = document.getElementById('chatBox')
-        console.log(box2);
         box2.style.display = 'flex'
     }
+
+
+
+
     return (
         <>
             <div className="Rooms-outer">
                 <div className="rooms">
                     <ul>
                         <li id='chatHeading'><h3>Chats</h3></li>
-                        <li onClick={displayChat}><p className='roomname'>Hello</p><p className='roomAddress'>Address 54f56s4df654sd64df67s6</p></li>
-                        {rooms}
+                        {rooms.length == 0 ?
+                            <p>Start messaging by creating a room.</p>
+                            :
+                            rooms
+                        }
 
                     </ul>
                 </div>
@@ -58,15 +90,7 @@ function Rooms(props) {
                     </div>
                 </div>
                 <div id='chatBox'>
-                    <header>Room Name</header>
-                    <div className='chatBody'>
-                        <div className='message'><p>Name</p> Hello this is my message</div>
-                    </div>
-                    <div>
-                        <input type="text" placeholder='your message here....' />
-                        <button className='primaryBtnDesign'>upload image</button>
-                        <button className='primaryBtnDesign'>send</button>
-                    </div>
+                    <Chatbox appContract={contract} roomContract={roomContract} userAccount={userAccount} setRoomContract={setRoomContract} />
                 </div>
             </div>
         </>

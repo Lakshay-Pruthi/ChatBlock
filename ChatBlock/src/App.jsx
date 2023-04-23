@@ -39,40 +39,24 @@ function App() {
   useEffect(() => {
     async function loadUserAccount() {
       const accounts = await web3.eth.getAccounts();
-      console.log(accounts);
       setUserAccount(accounts[0]);
     }
 
     web3 && loadUserAccount();
-  }, [web3, userAccount])
+  }, [provider, web3, userAccount])
 
   useEffect(() => {
     async function loadAppContract() {
-      const cont = new web3.eth.Contract(app.abi, '0x580bb68181B38768FF0EE793E8Bc0542C7691A36');
+      const cont = new web3.eth.Contract(app.abi, '0xbb8ed6EEDe23EDdd3c2eb1eDc86231cF5Ca0Dc76');
       setContract(cont);
     }
     web3 && loadAppContract();
   }, [web3])
 
-  async function something() {
-    const transaction = await contract.methods.createRoom(userAccount, "second Room").send({ from: userAccount });
-    console.log(transaction);
-  }
-
-  async function loadRoomContractAddress() {
-    const address = await contract.methods.userRooms(userAccount, 0).call();
-    setRoomContract(address);
-  }
-
-  async function loadRoomContract() {
-    const cont = new web3.eth.Contract(room.abi, roomContract);
-    console.log(cont);
-    const name = await cont.methods.name().call();
-    console.log(name);
-  }
 
   ethereum.on("accountsChanged", () => {
     setUserAccount();
+    window.location.reload()
   });
 
   ethereum.on('chainChanged', (_chainId) => window.location.reload());
