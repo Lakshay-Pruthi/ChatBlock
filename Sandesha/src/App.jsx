@@ -66,10 +66,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Main userAccount={userAccount} />} >
+          <Route path='/Sandesha/' element={<Main userAccount={userAccount} />} >
             <Route index element={<Home web3={web3} contract={contract} userAccount={userAccount} />} />
-            <Route path='/Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
-            <Route path='/About' element={<About />} />
+            <Route path='Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
+            <Route path='About' element={<About />} />
           </Route>
         </Routes>
 
