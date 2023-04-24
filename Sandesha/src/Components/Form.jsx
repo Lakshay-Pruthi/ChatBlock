@@ -1,6 +1,6 @@
 
 function Form(props) {
-    const { contract, userAccount } = props;
+    const { contract, userAccount, provider } = props;
     async function createRoom(e) {
         e.preventDefault();
         const name = e.target[0].value;
@@ -11,7 +11,12 @@ function Form(props) {
         <>
             <form onSubmit={createRoom}>
                 <input type="text" placeholder="Enter the name" />
-                <button type="submit" className="primaryBtnDesign">Create Room</button>
+                {provider ?
+                    <button type="submit" className="primaryBtnDesign">Create Room</button>
+                    :
+                    <button disabled type="button" className="primaryBtnDesign">Metamask required</button>
+
+                }
             </form>
         </>
     )

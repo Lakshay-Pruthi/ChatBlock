@@ -3,7 +3,7 @@ import logo from '../assets/Logo2.jpg'
 
 
 function Home(props) {
-    const { web3, contract, userAccount } = props;
+    const { web3, contract, userAccount, provider } = props;
 
 
     return (
@@ -15,7 +15,7 @@ function Home(props) {
                     <p>- Decentralized chat platform</p>
                     <h2>Welcome</h2>
                 </div>
-                <Form web3={web3} contract={contract} userAccount={userAccount} />
+                <Form web3={web3} contract={contract} userAccount={userAccount} provider={provider} />
 
             </div>
         </>

@@ -34,40 +34,40 @@ function App() {
 
       provider && loadWeb3();
     }, [provider]);
+
+
+    useEffect(() => {
+      async function loadUserAccount() {
+        const accounts = await web3.eth.getAccounts();
+        setUserAccount(accounts[0]);
+      }
+
+      web3 && loadUserAccount();
+    }, [provider, web3, userAccount])
+
+    useEffect(() => {
+      async function loadAppContract() {
+        const cont = new web3.eth.Contract(app.abi, '0x13C195537205c4E56e3c8d4478735799A37954f2');
+        setContract(cont);
+      }
+      web3 && loadAppContract();
+    }, [web3])
+
+
+    ethereum.on("accountsChanged", () => {
+      setUserAccount();
+      window.location.reload()
+    });
+
+    ethereum.on('chainChanged', (_chainId) => window.location.reload());
+
   }
-
-  useEffect(() => {
-    async function loadUserAccount() {
-      const accounts = await web3.eth.getAccounts();
-      setUserAccount(accounts[0]);
-    }
-
-    web3 && loadUserAccount();
-  }, [provider, web3, userAccount])
-
-  useEffect(() => {
-    async function loadAppContract() {
-      const cont = new web3.eth.Contract(app.abi, '0x9468C001ceBCCa8560B554aCd9B211e01F522B7F');
-      setContract(cont);
-    }
-    web3 && loadAppContract();
-  }, [web3])
-
-
-  ethereum.on("accountsChanged", () => {
-    setUserAccount();
-    window.location.reload()
-  });
-
-  ethereum.on('chainChanged', (_chainId) => window.location.reload());
-
-
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path='/Sandesha/' element={<Main userAccount={userAccount} />} >
-            <Route index element={<Home web3={web3} contract={contract} userAccount={userAccount} />} />
+            <Route index element={<Home web3={web3} contract={contract} userAccount={userAccount} provider={provider} />} />
             <Route path='Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
             <Route path='About' element={<About />} />
           </Route>
