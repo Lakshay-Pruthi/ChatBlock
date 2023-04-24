@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
     async function loadAppContract() {
-      const cont = new web3.eth.Contract(app.abi, '0xbb8ed6EEDe23EDdd3c2eb1eDc86231cF5Ca0Dc76');
+      const cont = new web3.eth.Contract(app.abi, '0x9468C001ceBCCa8560B554aCd9B211e01F522B7F');
       setContract(cont);
     }
     web3 && loadAppContract();
@@ -66,10 +66,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Main userAccount={userAccount} />} >
+          <Route path='/Sandesha/' element={<Main userAccount={userAccount} />} >
             <Route index element={<Home web3={web3} contract={contract} userAccount={userAccount} />} />
-            <Route path='/Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
-            <Route path='/About' element={<About />} />
+            <Route path='Rooms' element={<Rooms web3={web3} contract={contract} userAccount={userAccount} />} />
+            <Route path='About' element={<About />} />
           </Route>
         </Routes>
 
