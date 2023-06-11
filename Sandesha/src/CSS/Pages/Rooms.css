@@ -202,6 +202,15 @@ header button:hover {
     width: 15%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+#sendbutton:hover {
+    background-color: blue;
+    transition: 0.5s ease;
+}
+
 #message-form {
     display: block;
 }

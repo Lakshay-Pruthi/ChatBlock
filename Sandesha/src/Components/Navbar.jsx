@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import logo from '../assets/Logo.jpg'
+import { useContext } from "react";
+import { MainContext } from "../Pages/Main";
 
 function Navbar(props) {
-    const { userAccount } = props;
+    const { userAccount } = useContext(MainContext);
     return (
         <>
             <nav>

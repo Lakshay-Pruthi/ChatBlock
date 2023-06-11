@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MainContext } from "./Main";
 
 function Chat(props) {
-    const { roomContract, userAccount } = props;
+    const { roomContract, reload } = props;
+    const { userAccount } = useContext(MainContext);
 
 
     const [Messages, setMessages] = useState(null);
@@ -27,7 +29,7 @@ function Chat(props) {
             setMessages(messages);
         }
         roomContract && loadMessage();
-    }, [roomContract])
+    }, [roomContract, reload])
     return (
         <>
             {Messages}

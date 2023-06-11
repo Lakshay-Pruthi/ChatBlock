@@ -1,13 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Chat from "./Chat";
+import { MainContext } from "./Main";
 
 function Chatbox(props) {
 
-    const { appContract, roomContract, userAccount } = props;
+    const { contract, userAccount } = useContext(MainContext)
+
+    const { roomContract } = props;
 
     const [roomName, setRoomName] = useState('Room')
 
     const [Members, setMembers] = useState(userAccount)
+
+    const [reload, setReload] = useState(false);
+
+    const [sending, setSending] = useState(false)
+
+    const [addingMember, setAddingMember] = useState(false)
 
 
     useEffect(() => {
@@ -31,23 +40,30 @@ function Chatbox(props) {
             setMembers(memb);
         }
         roomContract && loadMembers();
-    }, [roomContract])
+    }, [roomContract, Members])
 
     async function addMemberToRoom(e) {
         e.preventDefault();
+        setAddingMember(true)
         const address = e.target[0].value;
 
-        roomContract.methods.addMember(address).send({ from: userAccount, gas: 200000 })
+        const memberAdded = await roomContract.methods.addMember(address).send({ from: userAccount, gas: 200000 })
 
-        console.log(appContract);
-        appContract.methods.addUserRoom(address, roomContract._address).send({ from: userAccount, gas: 200000 })
+        contract.methods.addUserRoom(address, roomContract._address).send({ from: userAccount, gas: 200000 })
+
+        setMembers()
+        console.log(addingMember);
+        setAddingMember(false)
+        console.log(addingMember);
     }
 
     async function SendMessage(e) {
         e.preventDefault();
+        setSending(true);
         const message = e.target[0].value;
-        roomContract.methods.sendMessage(userAccount, message).send({ from: userAccount });
-
+        const sending = await roomContract.methods.sendMessage(userAccount, message).send({ from: userAccount });
+        setReload(!reload)
+        setSending(false)
     }
 
 
@@ -61,19 +77,19 @@ function Chatbox(props) {
                         {Members}
                     </ul>
                     <form onSubmit={addMemberToRoom} id="header-form">
-                        <input type="text" />
-                        <button> + Add member</button>
+                        <input type="text" placeholder="Enter address of the user" />
+                        <button>{addingMember ? 'Adding...' : '+ Add member'}</button>
                     </form>
                 </div>
             </header>
             <div className='chatBody'>
 
-                <div className="message-outer-left"><div className='message-left'><p>Sandesha Bot</p>Welcome! Before sending messages or adding members to this group please note :<br /> 1. Once a meber added can't be removed <br />2. Once a message sent can't be edited or deleted.</div></div>
-                <Chat roomContract={roomContract} userAccount={userAccount} />
+                <div className="message-outer-left"><div className='message-left'><p>Sandesha Bot</p>Welcome! Before sending messages or adding members to this group please note :<br /> 1. Once a member added can't be removed <br />2. Once a message sent can't be edited or deleted.</div></div>
+                <Chat roomContract={roomContract} reload={reload} />
             </div>
             <form onSubmit={SendMessage} id='message-form'>
                 <input type="text" id="msgInput" placeholder='your message here....' />
-                <button className='primaryBtnDesign' type='submit'>send</button>
+                <button className='primaryBtnDesign' id="sendbutton" type='submit'>{sending ? 'sending' : 'send'}</button >
             </form>
         </>
     )

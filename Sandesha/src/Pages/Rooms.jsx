@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import logo from '../assets/Logo2.jpg'
 import room from '../contracts/Room.json'
 import Chat from './Chat';
 import Chatbox from './Chatbox';
+import { MainContext } from './Main';
 
-function Rooms(props) {
+function Rooms() {
 
-    const { web3, contract, userAccount } = props;
+    const { web3, contract, userAccount } = useContext(MainContext);
 
 
     const [rooms, setRooms] = useState([]);
@@ -90,7 +91,7 @@ function Rooms(props) {
                     </div>
                 </div>
                 <div id='chatBox'>
-                    <Chatbox appContract={contract} roomContract={roomContract} userAccount={userAccount} setRoomContract={setRoomContract} />
+                    <Chatbox roomContract={roomContract} />
                 </div>
             </div>
         </>

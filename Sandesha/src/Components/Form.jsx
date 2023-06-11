@@ -1,6 +1,8 @@
+import { useContext } from "react";
+import { MainContext } from "../Pages/Main";
 
-function Form(props) {
-    const { contract, userAccount } = props;
+function Form() {
+    const { contract, userAccount } = useContext(MainContext);
     async function createRoom(e) {
         e.preventDefault();
         const name = e.target[0].value;
