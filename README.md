@@ -1,4 +1,4 @@
-# Sandesha
+# Sandesha <a href="https://lakshay-pruthi.github.io/Sandesha/" > Try here</a>
 
 Sandesha is a decentralized, blockchain-based text messaging app built with ReactJS, web3JS, Metamask API, Truffle, and Ganache. It allows users to communicate privately and securely with each other, without the need for a central authority or intermediary. All messages are encrypted and stored securely on the blockchain, making them tamper-proof and immutable.
 
