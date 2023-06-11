@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Web3 from 'web3'
 
-import app from './contracts/App.json'
 
 
 import './App.css'
