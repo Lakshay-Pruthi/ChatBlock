@@ -11,7 +11,7 @@ export const MainContext = createContext()
 
 function Main() {
 
-    const provider = window.ethereum;
+    const [provider, setProvider] = useState(window.ethereum);
     const [web3, setWeb3] = useState(null);
     const [userAccount, setUserAccount] = useState(null);
     const [contract, setContract] = useState(null);
@@ -48,17 +48,17 @@ function Main() {
     }, [web3])
 
 
-    ethereum.on("accountsChanged", () => {
+    window.ethereum && ethereum.on("accountsChanged", () => {
         setUserAccount();
         window.location.reload()
     });
 
-    ethereum.on('chainChanged', (_chainId) => window.location.reload());
+    window.ethereum && ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
 
     return (
         <>
-            <MainContext.Provider value={{ web3, setWeb3, contract, userAccount }}>
+            <MainContext.Provider value={{ provider, setProvider, web3, setWeb3, contract, userAccount }}>
                 <Navbar />
                 <Outlet />
                 <Footer />
